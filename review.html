@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Reviews</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .restaurant-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .restaurant-card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .restaurant-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .restaurant-info {
+            padding: 15px;
+        }
+
+        .restaurant-name {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .rating-box {
+            position: relative;
+            background: #fff;
+            padding: 20px;
+            border-radius: 25px;
+        }
+
+        .rating-box header {
+            font-size: 14px;
+            color: #dadada;
+            font-weight: 500;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .rating-box .stars {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px;
+        }
+
+        .stars i {
+            color: #e6e6e6;
+            font-size: 15px;
+            cursor: pointer;
+            transition: color 0.2s ease;
+        }
+
+        .stars i.active {
+            color: #ff9c1a;
+        }
+
+        .review-button {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 450px;
+            padding: 20px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+            display: none;
+        }
+
+        .popup .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 20px;
+            height: 20px;
+            background: #eee;
+            color: #111;
+            border: none;
+            outline: none;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .popup.active {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Restaurant Reviews</h1>
+        <div class="restaurant-grid">
+            <div class="restaurant-card">
+                <img src="https://source.unsplash.com/restaurant/1200x200" alt="Restaurant 1" class="restaurant-image">
+                <div class="restaurant-info">
+                    <div class="restaurant-name">Delicious Bites</div>
+                    <div class="rating-box">
+                        <header>How was your experience?</header>
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <button class="review-button" onclick="openPopup()">Leave a Review</button>
+                </div>
+            </div>
+
+            <div class="restaurant-card">
+                <img src="https://source.unsplash.com/restaurant/1200x200" alt="Restaurant 1" class="restaurant-image">
+                <div class="restaurant-info">
+                    <div class="restaurant-name">Delicious Bites</div>
+                    <div class="rating-box">
+                        <header>How was your experience?</header>
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <button class="review-button" onclick="openPopup()">Leave a Review</button>
+                </div>
+            </div>
+
+            <div class="restaurant-card">
+                <img src="https://source.unsplash.com/restaurant/1200x200" alt="Restaurant 1" class="restaurant-image">
+                <div class="restaurant-info">
+                    <div class="restaurant-name">Delicious Bites</div>
+                    <div class="rating-box">
+                        <header>How was your experience?</header>
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <button class="review-button" onclick="openPopup()">Leave a Review</button>
+                </div>
+            </div>
+            
+            <div class="restaurant-card">
+                <img src="https://source.unsplash.com/restaurant/1200x200" alt="Restaurant 1" class="restaurant-image">
+                <div class="restaurant-info">
+                    <div class="restaurant-name">Delicious Bites</div>
+                    <div class="rating-box">
+                        <header>How was your experience?</header>
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <button class="review-button" onclick="openPopup()">Leave a Review</button>
+                </div>
+            </div>
+            <!-- Add more restaurant cards here -->
+
+        </div>
+    </div>
+
+    <div class="popup" id="review-popup">
+        <button class="close-btn" onclick="closePopup()">&times;</button>
+        <h2>Leave Your Review</h2>
+        <textarea id="review-text" placeholder="Write your review here..."></textarea>
+        <button onclick="submitReview()">Submit Review</button>
+        <div id="reviews"></div>
+    </div>
+
+    <script>
+        // Select all elements with the "i" tag and store them in a NodeList called "stars"
+        const stars = document.querySelectorAll(".stars i");
+
+        // Loop through the "stars" NodeList
+        stars.forEach((star, index1) => {
+            // Add an event listener that runs a function when the "click" event is triggered
+            star.addEventListener("click", () => {
+                // Loop through the "stars" NodeList Again
+                stars.forEach((star, index2) => {
+                    // Add the "active" class to the clicked star and any stars with a lower index
+                    // and remove the "active" class from any stars with a higher index
+                    index1 >= index2 ? star.classList.add("active") : star.classList.remove("active");
+                });
+            });
+        });
+
+        function openPopup() {
+            document.getElementById('review-popup').classList.add('active');
+        }
+
+        function closePopup() {
+            document.getElementById('review-popup').classList.remove('active');
+        }
+
+        function submitReview() {
+            const reviewText = document.getElementById('review-text').value;
+            if (reviewText) {
+                let reviews = JSON.parse(localStorage.getItem('reviews')) || [];
+                reviews.push(reviewText);
+                localStorage.setItem('reviews', JSON.stringify(reviews));
+                displayReviews();
+                document.getElementById('review-text').value = '';
+                closePopup();
+            }
+        }
+
+        function displayReviews() {
+            const reviews = JSON.parse(localStorage.getItem('reviews')) || [];
+            const reviewsContainer = document.getElementById('reviews');
+            reviewsContainer.innerHTML = reviews.map(review => `<p>${review}</p>`).join('');
+        }
+
+        // Display reviews on page load
+        window.onload = displayReviews;
+    </script>
+</body>
+
+</html>
