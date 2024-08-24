@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Reviews</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Restaurant Reviews</h1>
+        <div class="restaurant-grid">
+            <div class="restaurant-card">
+                <img src="https://loremflickr.com/200/200?random/" alt="Restaurant 1" class="restaurant-image">
+                <div class="restaurant-info">
+                    <div class="restaurant-name">Delicious Bites</div>
+                    <div class="rating-box">
+                        <header>How was your experience?</header>
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <button class="review-button" onclick="openPopup()">Leave a Review</button>
+                </div>
+            </div>
+
+            <div class="restaurant-card">
+                <img src="https://source.unsplash.com/restaurant/1200x200" alt="Restaurant 1" class="restaurant-image">
+                <div class="restaurant-info">
+                    <div class="restaurant-name">Delicious Bites</div>
+                    <div class="rating-box">
+                        <header>How was your experience?</header>
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <button class="review-button" onclick="openPopup()">Leave a Review</button>
+                </div>
+            </div>
+
+            <div class="restaurant-card">
+                <img src="https://source.unsplash.com/restaurant/1200x200" alt="Restaurant 1" class="restaurant-image">
+                <div class="restaurant-info">
+                    <div class="restaurant-name">Delicious Bites</div>
+                    <div class="rating-box">
+                        <header>How was your experience?</header>
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <button class="review-button" onclick="openPopup()">Leave a Review</button>
+                </div>
+            </div>
+            
+            <div class="restaurant-card">
+                <img src="https://source.unsplash.com/restaurant/1200x200" alt="Restaurant 1" class="restaurant-image">
+                <div class="restaurant-info">
+                    <div class="restaurant-name">Delicious Bites</div>
+                    <div class="rating-box">
+                        <header>How was your experience?</header>
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <button class="review-button" onclick="openPopup()">Leave a Review</button>
+                </div>
+            </div>
+            <!-- Add more restaurant cards here -->
+
+        </div>
+    </div>
+
+    <div class="popup" id="review-popup">
+        <button class="close-btn" onclick="closePopup()">&times;</button>
+        <h2>Leave Your Review</h2>
+        <textarea id="review-text" placeholder="Write your review here..."></textarea>
+        <button onclick="submitReview()">Submit Review</button>
+        <div id="reviews"></div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
