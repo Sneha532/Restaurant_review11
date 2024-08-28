@@ -1,10 +1,84 @@
-body {
-    font-family: Arial, sans-serif;
+/* Reset and global styles */
+* {
+    padding: 0;
     margin: 0;
-    padding: 20px;
-    background-color: #f0f0f0;
+    text-decoration: none;
+    list-style: none;
+    box-sizing: border-box;
+}
+body {
+    font-family: 'Poppins', sans-serif;
 }
 
+/* Navbar styling */
+nav {
+    background-color: #131313;
+    color: #fff;
+    height: 60px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Container styling */
+nav .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+    padding: 0 20px;
+}
+
+/* Logo styling */
+nav .logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #06fa63;
+}
+
+/* Navigation list styling */
+nav ul {
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+/* Navigation list items styling */
+nav ul li {
+    margin-left: 20px;
+}
+
+/* Link styling */
+nav ul li a {
+    text-transform: uppercase;
+    color: #fff;
+    font-size: 18px;
+    transition: color 0.3s;
+    padding: 7px 13px;
+    border-radius: 5px;
+}
+
+/* Link hover effect */
+nav ul li a:hover {
+    color: #ff6347; /* Tomato color */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    nav .container {
+        flex-direction: column;
+    }
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+    nav ul li {
+        margin: 10px 0;
+    }
+}
+/* Restaurant Grid */
 .container {
     max-width: 1200px;
     margin: 0 auto;
