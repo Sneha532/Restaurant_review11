@@ -40,7 +40,8 @@ function createHotelCard(hotel) {
                     ${createStarRating(hotel.rating, hotel.id)}
                     <span>${hotel.rating.toFixed(1)}</span>
                 </div>
-                <div class="hotel-price">$${hotel.price} per night</div>
+                <div class="hotel-price">₹${hotel.price} per night</div>
+                <button class="review-btn" data-hotel-id="${hotel.id}">Give Review</button>
             </div>
         </div>
     `;
@@ -50,7 +51,7 @@ function createHotelCard(hotel) {
 function displayHotels(hotelsToDisplay) {
     const hotelGrid = document.getElementById('hotel-grid');
     hotelGrid.innerHTML = hotelsToDisplay.map(createHotelCard).join('');
-    addRatingEventListeners();
+    addReviewEventListeners();
 }
 
 // Initial display of all hotels
@@ -100,31 +101,6 @@ function updateThemeIcon() {
 // Call updateThemeIcon initially to set the correct icon
 updateThemeIcon();
 
-// Add event listeners for rating stars
-function addRatingEventListeners() {
-    const stars = document.querySelectorAll('.hotel-rating i');
-    stars.forEach(star => {
-        star.addEventListener('click', handleStarClick);
-    });
-}
-
-// Handle star click event
-function handleStarClick(event) {
-    const star = event.target;
-    const hotelId = star.getAttribute('data-hotel-id');
-    const rating = parseInt(star.getAttribute('data-rating'));
-
-    // Update the rating in the hotels array
-    const hotel = hotels.find(h => h.id == hotelId);
-    hotel.rating = rating;
-
-    // Store the updated rating in local storage
-    localStorage.setItem(`hotel-rating-${hotelId}`, rating);
-
-    // Redisplay the hotels to reflect the updated rating
-    displayHotels(hotels);
-}
-
 // Load ratings from local storage
 function loadRatingsFromLocalStorage() {
     hotels.forEach(hotel => {
@@ -137,3 +113,81 @@ function loadRatingsFromLocalStorage() {
 
 // Load ratings on page load
 loadRatingsFromLocalStorage();
+
+// Hamburger menu functionality
+const navToggle = document.getElementById('nav-toggle');
+const navLinks = document.getElementById('nav-links');
+
+navToggle.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
+});
+
+// Add event listeners for review buttons
+function addReviewEventListeners() {
+    const reviewButtons = document.querySelectorAll('.review-btn');
+    reviewButtons.forEach(button => {
+        button.addEventListener('click', openReviewModal);
+    });
+}
+
+// Open review modal
+function openReviewModal(event) {
+    const hotelId = event.target.getAttribute('data-hotel-id');
+    document.getElementById('hotel-id').value = hotelId;
+    document.getElementById('review-modal').style.display = 'block';
+    displayPastReviews(hotelId);
+}
+
+// Close review modal
+const modal = document.getElementById('review-modal');
+const closeModal = document.querySelector('.close');
+
+closeModal.addEventListener('click', () => {
+    modal.style.display = 'none';
+});
+
+window.addEventListener('click', (event) => {
+    if (event.target == modal) {
+        modal.style.display = 'none';
+    }
+});
+
+// Handle review form submission
+const reviewForm = document.getElementById('review-form');
+
+reviewForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const hotelId = document.getElementById('hotel-id').value;
+    const reviewText = document.getElementById('review-text').value;
+    const reviewRating = parseInt(document.getElementById('review-rating').value);
+
+    // Store the review in local storage
+    const reviews = JSON.parse(localStorage.getItem(`hotel-reviews-${hotelId}`)) || [];
+    reviews.push({ text: reviewText, rating: reviewRating });
+    localStorage.setItem(`hotel-reviews-${hotelId}`, JSON.stringify(reviews));
+
+    // Update the hotel's rating
+    const hotel = hotels.find(h => h.id == hotelId);
+    hotel.rating = (hotel.rating + reviewRating) / 2;
+
+    // Store the updated rating in local storage
+    localStorage.setItem(`hotel-rating-${hotelId}`, hotel.rating);
+
+    // Redisplay the hotels to reflect the updated rating
+    displayHotels(hotels);
+
+    // Close the modal
+    modal.style.display = 'none';
+});
+
+// Display past reviews
+function displayPastReviews(hotelId) {
+    const pastReviewsContainer = document.getElementById('past-reviews');
+    const reviews = JSON.parse(localStorage.getItem(`hotel-reviews-${hotelId}`)) || [];
+    pastReviewsContainer.innerHTML = reviews.map(review => `
+        <div class="past-review">
+            <p><strong>Rating:</strong> ${review.rating}</p>
+            <p>${review.text}</p>
+        </div>
+    `).join('');
+}
