@@ -3,20 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About</title>
+    <title>About - LuxeStay Reviews</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <section id="about" class="container mx-auto mt-8 p-4">
-        <h2 class="text-2xl font-bold mb-4">About Us</h2>
-        <p class="mb-4">
-            Welcome to our hotel booking platform! We are dedicated to providing you with the best accommodation options for your travels. Whether you're looking for luxury resorts, cozy inns, or city center suites, we've got you covered.
-        </p>
-        <p class="mb-4">
-            Our mission is to make your travel experience seamless and enjoyable by offering a wide range of carefully curated hotels. We partner with top-rated establishments to ensure quality and satisfaction for all our customers.
-        </p>
-        <p>
-            With our user-friendly interface and powerful search functionality, finding your perfect stay is just a few clicks away. Start exploring and book your dream accommodation today!
-        </p>
-    </section>
+    <header>
+        <nav>
+            <div class="logo">LuxeStay Reviews</div>
+            <div class="nav-toggle" id="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="search-container">
+                <input type="text" id="search-input" placeholder="Search hotels...">
+                <button id="search-btn"><i class="fas fa-search"></i></button>
+                <button id="theme-toggle">
+                    <i class="fas fa-sun"></i>
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section id="about" class="container">
+            <h2 class="text-2xl font-bold mb-4">About Us</h2>
+            <p class="mb-4">
+                Welcome to our hotel booking platform! We are dedicated to providing you with the best accommodation options for your travels. Whether you're looking for luxury resorts, cozy inns, or city center suites, we've got you covered.
+            </p>
+            <p class="mb-4">
+                Our mission is to make your travel experience seamless and enjoyable by offering a wide range of carefully curated hotels. We partner with top-rated establishments to ensure quality and satisfaction for all our customers.
+            </p>
+            <p>
+                With our user-friendly interface and powerful search functionality, finding your perfect stay is just a few clicks away. Start exploring and book your dream accommodation today!
+            </p>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>About Us</h3>
+                    <p>LuxeStay Reviews is your trusted source for honest hotel reviews and seamless booking experiences.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <p>Email: info@luxestayreviews.com</p>
+                    <p>Phone: (123) 456-7890</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 LuxeStay Reviews. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>

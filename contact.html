@@ -4,25 +4,87 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <header>
+        <nav>
+            <div class="logo">LuxeStay Reviews</div>
+            <div class="nav-toggle" id="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="search-container">
+                <input type="text" id="search-input" placeholder="Search hotels...">
+                <button id="search-btn"><i class="fas fa-search"></i></button>
+                <button id="theme-toggle">
+                    <i class="fas fa-sun"></i>
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
+        </nav>
+    </header>
+
     <section id="contact" class="container mx-auto mt-8 p-4">
         <h2 class="text-2xl font-bold mb-4">Contact Us</h2>
-        <form id="contact-form" class="max-w-md">
+        <form id="contact-form" class="max-w-md bg-white p-6 rounded-lg shadow-md">
             <div class="mb-4">
-                <label for="name" class="block mb-2">Name:</label>
-                <input type="text" id="name" name="name" required class="w-full px-3 py-2 border rounded-md">
+                <label for="name" class="block mb-2 font-semibold">Name:</label>
+                <input type="text" id="name" name="name" required class="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
             </div>
             <div class="mb-4">
-                <label for="email" class="block mb-2">Email:</label>
-                <input type="email" id="email" name="email" required class="w-full px-3 py-2 border rounded-md">
+                <label for="email" class="block mb-2 font-semibold">Email:</label>
+                <input type="email" id="email" name="email" required class="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
             </div>
             <div class="mb-4">
-                <label for="message" class="block mb-2">Message:</label>
-                <textarea id="message" name="message" required class="w-full px-3 py-2 border rounded-md" rows="4"></textarea>
+                <label for="message" class="block mb-2 font-semibold">Message:</label>
+                <textarea id="message" name="message" required class="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" rows="4"></textarea>
             </div>
             <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">Send Message</button>
         </form>
     </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>About Us</h3>
+                    <p>LuxeStay Reviews is your trusted source for honest hotel reviews and seamless booking experiences.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <p>Email: info@luxestayreviews.com</p>
+                    <p>Phone: (123) 456-7890</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 LuxeStay Reviews. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        document.getElementById('contact-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            alert('Your message has been submitted!');
+            this.reset();
+        });
+    </script>
 </body>
 </html>
