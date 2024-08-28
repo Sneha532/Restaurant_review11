@@ -16,6 +16,8 @@ body {
     color: var(--text-color);
     background-color: var(--bg-color);
     transition: background-color 0.3s ease;
+    margin: 0;
+    padding: 0;
 }
 
 .container {
@@ -47,9 +49,26 @@ nav {
     color: var(--primary-color);
 }
 
+.nav-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.nav-toggle span {
+    width: 25px;
+    height: 3px;
+    background-color: var(--text-color);
+    margin: 2px 0;
+    transition: 0.4s;
+}
+
 .nav-links {
     display: flex;
     list-style: none;
+    margin: 0;
+    padding: 0;
+    flex-grow: 1;
 }
 
 .nav-links li {
@@ -69,6 +88,7 @@ nav {
 .search-container {
     display: flex;
     align-items: center;
+    margin-left: auto;
 }
 
 #search-input {
@@ -94,18 +114,6 @@ nav {
     margin-left: 1rem;
 }
 
-.hamburger {
-    display: none;
-    cursor: pointer;
-}
-
-.hamburger .line {
-    width: 25px;
-    height: 3px;
-    background-color: var(--text-color);
-    margin: 5px;
-}
-
 /* Hero Section */
 .hero {
     background-image: url('https://source.unsplash.com/1600x900/?hotel');
@@ -123,6 +131,7 @@ nav {
 .hero h1 {
     font-size: 3rem;
     margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 /* Featured Hotels Section */
@@ -229,16 +238,37 @@ body.dark-mode {
 
 /* Responsive Design */
 @media (max-width: 768px) {
+    .nav-toggle {
+        display: flex;
+    }
+
     .nav-links {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: var(--header-bg);
+        flex-direction: column;
+        align-items: center;
+        padding: 1rem 0;
         display: none;
     }
 
-    .hamburger {
-        display: block;
+    .nav-links.active {
+        display: flex;
+    }
+
+    .nav-links li {
+        margin: 0.5rem 0;
     }
 
     .search-container {
-        display: none;
+        width: 100%;
+        margin-top: 1rem;
+    }
+
+    #search-input {
+        width: 100%;
     }
 
     .hero h1 {

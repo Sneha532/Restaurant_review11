@@ -1,12 +1,33 @@
 // Sample hotel data (in a real application, this would come from a backend API)
 const hotels = [
-    { id: 1, name: "Luxury Palace Hotel", rating: 4.5, price: 250, image: "https://source.unsplash.com/800x600/?luxury-hotel" },
-    { id: 2, name: "Cozy Inn", rating: 4.2, price: 120, image: "https://source.unsplash.com/800x600/?cozy-hotel" },
-    { id: 3, name: "Seaside Resort", rating: 4.7, price: 350, image: "https://source.unsplash.com/800x600/?beach-resort" },
-    { id: 4, name: "Mountain View Lodge", rating: 4.3, price: 180, image: "https://source.unsplash.com/800x600/?mountain-hotel" },
-    { id: 5, name: "City Center Suites", rating: 4.1, price: 200, image: "https://source.unsplash.com/800x600/?city-hotel" },
-    { id: 6, name: "Historic Grand Hotel", rating: 4.6, price: 280, image: "https://source.unsplash.com/800x600/?historic-hotel" },
+    { id: 1, name: "Luxury Palace Hotel", rating: 4.5, price: 250, image: "images/hotel1.jpg" },
+    { id: 2, name: "Cozy Inn", rating: 4.2, price: 120, image: "images/hotel2.jpg" },
+    { id: 3, name: "Seaside Resort", rating: 4.7, price: 350, image: "images/hotel3.jpg" },
+    { id: 4, name: "Mountain View Lodge", rating: 4.3, price: 180, image: "images/hotel4.jpg" },
+    { id: 5, name: "City Center Suites", rating: 4.1, price: 200, image: "images/hotel5.jpg" },
+    { id: 6, name: "Historic Grand Hotel", rating: 4.6, price: 280, image: "images/hotel6.jpg" },
+    { id: 7, name: "Historic Grand Hotel", rating: 4.6, price: 280, image: "images/hotel7.jpg" },
+    { id: 8, name: "Historic Grand Hotel", rating: 4.6, price: 280, image: "images/hotel8.jpg" },
 ];
+
+// Function to create star rating
+function createStarRating(rating, hotelId) {
+    const fullStars = Math.floor(rating);
+    const halfStar = rating % 1 >= 0.5;
+    let starHTML = '';
+
+    for (let i = 0; i < 5; i++) {
+        if (i < fullStars) {
+            starHTML += `<i class="fas fa-star" data-hotel-id="${hotelId}" data-rating="${i + 1}"></i>`;
+        } else if (i === fullStars && halfStar) {
+            starHTML += `<i class="fas fa-star-half-alt" data-hotel-id="${hotelId}" data-rating="${i + 1}"></i>`;
+        } else {
+            starHTML += `<i class="far fa-star" data-hotel-id="${hotelId}" data-rating="${i + 1}"></i>`;
+        }
+    }
+
+    return starHTML;
+}
 
 // Function to create hotel cards
 function createHotelCard(hotel) {
@@ -16,7 +37,8 @@ function createHotelCard(hotel) {
             <div class="hotel-info">
                 <h3 class="hotel-name">${hotel.name}</h3>
                 <div class="hotel-rating">
-                    ${hotel.rating} <i class="fas fa-star"></i>
+                    ${createStarRating(hotel.rating, hotel.id)}
+                    <span>${hotel.rating.toFixed(1)}</span>
                 </div>
                 <div class="hotel-price">$${hotel.price} per night</div>
             </div>
@@ -28,6 +50,7 @@ function createHotelCard(hotel) {
 function displayHotels(hotelsToDisplay) {
     const hotelGrid = document.getElementById('hotel-grid');
     hotelGrid.innerHTML = hotelsToDisplay.map(createHotelCard).join('');
+    addRatingEventListeners();
 }
 
 // Initial display of all hotels
@@ -66,28 +89,51 @@ function updateThemeIcon() {
     const moonIcon = themeToggle.querySelector('.fa-moon');
     
     if (body.classList.contains('dark-mode')) {
-        sunIcon.style.display = 'inline-block';
-        moonIcon.style.display = 'none';
-    } else {
         sunIcon.style.display = 'none';
         moonIcon.style.display = 'inline-block';
+    } else {
+        sunIcon.style.display = 'inline-block';
+        moonIcon.style.display = 'none';
     }
 }
 
-// Initialize theme icon
+// Call updateThemeIcon initially to set the correct icon
 updateThemeIcon();
 
-// Mobile menu toggle
-const hamburger = document.querySelector('.hamburger');
-const navLinks = document.querySelector('.nav-links');
-
-hamburger.addEventListener('click', () => {
-    navLinks.classList.toggle('active');
-});
-
-// Close mobile menu when a link is clicked
-document.querySelectorAll('.nav-links a').forEach(link => {
-    link.addEventListener('click', () => {
-        navLinks.classList.remove('active');
+// Add event listeners for rating stars
+function addRatingEventListeners() {
+    const stars = document.querySelectorAll('.hotel-rating i');
+    stars.forEach(star => {
+        star.addEventListener('click', handleStarClick);
     });
-});
+}
+
+// Handle star click event
+function handleStarClick(event) {
+    const star = event.target;
+    const hotelId = star.getAttribute('data-hotel-id');
+    const rating = parseInt(star.getAttribute('data-rating'));
+
+    // Update the rating in the hotels array
+    const hotel = hotels.find(h => h.id == hotelId);
+    hotel.rating = rating;
+
+    // Store the updated rating in local storage
+    localStorage.setItem(`hotel-rating-${hotelId}`, rating);
+
+    // Redisplay the hotels to reflect the updated rating
+    displayHotels(hotels);
+}
+
+// Load ratings from local storage
+function loadRatingsFromLocalStorage() {
+    hotels.forEach(hotel => {
+        const storedRating = localStorage.getItem(`hotel-rating-${hotel.id}`);
+        if (storedRating) {
+            hotel.rating = parseFloat(storedRating);
+        }
+    });
+}
+
+// Load ratings on page load
+loadRatingsFromLocalStorage();
