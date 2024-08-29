@@ -1,12 +1,13 @@
 // Sample hotel data (in a real application, this would come from a backend API)
+
 const hotels = [
     { id: 1, name: "Spice Kraft", rating: 4.5, price: 2000, image: "images/hotel1.jpg" },
     { id: 2, name: "The Saffron Tree", rating: 4.2, price: 1200, image: "images/hotel2.jpg" },
     { id: 3, name: "Alfresco", rating: 4.7, price: 1600, image: "images/hotel3.jpg" },
-    { id: 4, name: "Vertex", rating: 4.3, price: 800, image: "images/hotel4.jpg" },
-    { id: 5, name: "Ottima Cucina italiana", rating: 4.1, price: 200, image: "images/hotel5.jpg" },
+    { id: 4, name: "Vertex", rating: 4.3, price: 1800, image: "images/hotel4.jpg" },
+    { id: 5, name: "Ottima Cucina italiana", rating: 4.1, price: 2800, image: "images/hotel5.jpg" },
     { id: 6, name: "Aheli", rating: 4.6, price: 1200, image: "images/hotel6.jpg" },
-    { id: 7, name: "Jw Kitchen", rating: 4.6, price: 180, image: "images/hotel7.jpg" },
+    { id: 7, name: "Jw Kitchen", rating: 4.6, price: 4500, image: "images/hotel7.jpg" },
     { id: 8, name: "Vintage Asia", rating: 4.6, price: 2800, image: "images/hotel8.jpg" },
 ];
 
@@ -86,7 +87,7 @@ themeToggle.addEventListener('click', () => {
 });
 
 function updateThemeIcon() {
-    const sunIcon = themeToggle.querySelector('.fa-sun');
+    //const sunIcon = themeToggle.querySelector('.fa-sun');
     const moonIcon = themeToggle.querySelector('.fa-moon');
     
     if (body.classList.contains('dark-mode')) {
