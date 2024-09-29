@@ -480,6 +480,7 @@ body.dark-mode {
     padding: 10px;
     border-radius: 4px;
     border: 1px solid #ddd;
+    color: #333;
 }
 
 #past-reviews h3 {
