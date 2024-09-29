@@ -180,7 +180,8 @@ reviewForm.addEventListener('submit', (event) => {
 
     // Update the hotel's rating
     const hotel = hotels.find(h => h.id == hotelId);
-    hotel.rating = (hotel.rating + reviewRating) / 2;
+    const totalRatings = reviews.reduce((sum, review) => sum + review.rating, 0);
+    hotel.rating = totalRatings / reviews.length;
 
     // Store the updated rating in local storage
     localStorage.setItem(`hotel-rating-${hotelId}`, hotel.rating);
@@ -192,6 +193,11 @@ reviewForm.addEventListener('submit', (event) => {
     modal.style.display = 'none';
 });
 
+// Clear form fields after submission
+document.getElementById('review-text').value = '';
+document.getElementById('review-rating').value = '';
+
+
 // Display past reviews
 function displayPastReviews(hotelId) {
     const pastReviewsContainer = document.getElementById('past-reviews');
@@ -202,4 +208,14 @@ function displayPastReviews(hotelId) {
             <p>${review.text}</p>
         </div>
     `).join('');
+}
+
+// Open review modal
+function openReviewModal(event) {
+    const hotelId = event.target.getAttribute('data-hotel-id');
+    document.getElementById('hotel-id').value = hotelId;
+    document.getElementById('review-text').value = ''; // Clear review text
+    document.getElementById('review-rating').value = ''; // Clear review rating
+    document.getElementById('review-modal').style.display = 'block';
+    displayPastReviews(hotelId);
 }
